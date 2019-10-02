@@ -43,6 +43,16 @@ a:hover{
     background-color: #333333;
     color: #ffffff;
 }
+.user-component{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-component p{
+    text-align: left;
+    margin: 0 auto;
+    padding: 15px 50px;
+}
 footer{
     width: 100%;
     border-top: solid 1px #333333;

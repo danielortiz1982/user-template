@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="styles/css/main.css">
-    <script>
- 
-    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -42,25 +39,41 @@
             users.forEach((element, index)=>{
 
                 const user = document.createElement('div')
-                const userName = document.createElement('p')
-                const userNameText = document.createTextNode(element.firstName)
-                userName.appendChild(userNameText)
-                user.appendChild(userName)
 
+                const userFirstName = document.createElement('p')
+                const userFirstNameText = document.createTextNode(element.firstName)
+                userFirstName.appendChild(userFirstNameText)
+                user.appendChild(userFirstName)
+
+                const userLastName = document.createElement('p')
+                const userLastNameText = document.createTextNode(element.lastName)
+                userLastName.appendChild(userLastNameText)
+                user.appendChild(userLastName)
+
+                const userAge = document.createElement('p')
+                const userAgeText = document.createTextNode(element.age)
+                userAge.appendChild(userAgeText)
+                user.appendChild(userAge)
+
+                const userEmail = document.createElement('p')
+                const userEmailText = document.createTextNode(element.email)
+                userEmail.appendChild(userEmailText)
+                user.appendChild(userEmail)
+
+                const userRemoveButton = document.createElement('button')
+                const userRemoveButtonText = document.createTextNode(`Remove - ${element._id}`)
+                userRemoveButton.appendChild(userRemoveButtonText)
+                user.appendChild(userRemoveButton)
 
                 user.id = element._id
                 user.setAttribute("class", `user-component`)
                 user.dataset.id = element._id
                 userContent.appendChild(user)
 
-                console.log(element)
             })
         }
         
-        
-
         getUsers()
-
 
     </script>
     <script src="js/main.js"></script>
