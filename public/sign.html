@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="styles/css/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="header">Sign Up.</h1>
+        <main class="main">
+            <nav class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/api/v1/users/">User API</a></li>
+                    <li><a href="sign.html">sign up</a></li>
+                    <li><a href="/users">users</a></li>
+                </ul>
+            </nav>
+
+            <form id="form">
+                <div>
+                    <label>first name</label>
+                    <p><input type="text" id="fname" name="fname"></p>
+                </div>
+
+                <div>
+                        <label>last name</label>
+                        <p><input type="text" id="lname" name="lname"></p>
+                    </div>
+
+                    <div>
+                            <label>age name</label>
+                            <p><input type="number" id="age" name="age"></p>
+                        </div>
+
+                        <div>
+                                <label>email</label>
+                                <p><input type="email" id="email" name="email"></p>
+                            </div>
+
+                            <div>
+                                    <label>password</label>
+                                    <p><input type="password" id="password" name="password"></p>
+                                </div>
+
+                            <div>
+                                    <button id="userSent">Add User</button>
+                                </div>
+            </form>
+        </main>
+        <footer>
+            <h5>User Sign up.</h5>
+        </footer>
+    </div>
+    <script>
+        const form = document.getElementById('form')
+        const payload = {}
+        const btn = document.getElementById('userSent')
+        btn.addEventListener('click', async (e)=>{
+            e.preventDefault()
+            payload.firstName = document.getElementById('fname').value
+            payload.lastName = document.getElementById('lname').value
+            payload.age = document.getElementById('age').value
+            payload.email = document.getElementById('email').value
+            payload.password = document.getElementById('password').value
+            const url = '/api/v1/users/'
+            const data = payload
+            try {
+                const response = await fetch(url, {
+                    method: 'POST', // or 'PUT'
+                    body: JSON.stringify(data), // data can be `string` or {object}!
+                    headers: {
+                    'Content-Type': 'application/json'
+                    }
+                });
+                const json = await response.json();
+                console.log('Response Obj:', JSON.stringify(json))
+                } catch (error) {
+                console.error('Error:', error)
+            }
+            form.reset()
+        })
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

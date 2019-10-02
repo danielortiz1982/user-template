@@ -12,13 +12,6 @@ const User = mongoose.model('User', {
         required: true,
         trim: true
     },
-    userName: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true,
-        minlength: 3
-    },
     email: {
         type: String,
         required: true,
@@ -55,14 +48,14 @@ const User = mongoose.model('User', {
         {
             Address: {
                 type: String,
-                require: true,
+                //require: true,
                 trim: true,
                 lowercase: true,
                 minlength: 3
             },
             City: {
                 type: String,
-                require: true,
+                //require: true,
                 trim: true,
                 minlength: 2
             },
@@ -71,15 +64,15 @@ const User = mongoose.model('User', {
                 uppercase: true,
                 maxlength: 2,
                 minlength: 2,
-                trim: true,
-                require: true
+                trim: true
+                //require: true
             },
             PostalCode: {
                 type: Number,
                 maxlength: 5,
                 minlength: 5,
-                trim: true,
-                require: true
+                trim: true
+                //require: true
             },
             AddressType: {
                 type: String,

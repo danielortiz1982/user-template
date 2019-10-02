@@ -11,11 +11,28 @@ UserRouter.post('/api/v1/users', (req, res) => {
     let userPassword = user.password
     bcrypt.hash(userPassword, saltRounds, async (error, hash) => {
         user.password = hash
-        try{
+
+        const userValidationObj = {
+            email: user.email
+        }
+
+        const userEmailValidation = await UserModel.find(userValidationObj)
+        const userEmailcondition = userEmailValidation.length
+
+        if(!userEmailcondition){
             await user.save()
-            res.status(201).send(user)
-        }catch(e){
-            res.status(400).send(e)
+            res
+                .status(201)
+                .send(user)
+                .end()
+        }else{
+            res
+                .status(400)
+                .send({
+                    message: 'user is already registered.',
+                    status: 400
+                })
+                .end()
         }
     })
 })
@@ -50,6 +67,7 @@ UserRouter.delete('/api/v1/users/:id', async (req, res) => {
 })
 
 UserRouter.put('/api/v1/users/:id', async (req, res) => {
+    // TODO validate email - ref code line 19, 20
     const _id = req.params.id
     try{
         const user = await UserModel.findByIdAndUpdate(_id, req.body, {new: true, runValidators: true})
